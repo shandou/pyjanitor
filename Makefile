@@ -1,5 +1,20 @@
 SHELL=/bin/bash
+dockercompose_file=docker-compose.yml
 ACTIVATE=source activate pyjanitor-dev
+
+dockercompose=docker compose --file $(dockercompose_file)
+
+docker-up: $(dockercompose_file)
+	$(dockercompose) up --build --detach
+
+
+docker-down: $(dockercompose_file)
+	$(dockercompose) down --remove-orphans
+
+# Start an existing container
+docker-start: ${dockercompose_file}
+	${dockercompose} start -it
+
 
 release:
 	rm -f dist/*

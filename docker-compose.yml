@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  airflow_local:
+    build: .
+    image: pyjanitor-dev:latest
+    # similar to `docker run -i`
+    stdin_open: true
+    # similar to `docker run -t`
+    tty: true
+    container_name: pyjanitor_docker
+    volumes:
+      - .:/pyjanitor
